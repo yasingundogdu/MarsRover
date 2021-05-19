@@ -20,10 +20,10 @@ namespace MarsRover.CommandHandlers
         public Task<string> Handle(CalculateFinalPositionCommand request, CancellationToken cancellationToken)
         {
             var plateauCoordinates = request.PlateauCoordinates.Split(" ").ToList();
-            var rover1Position = request.RoverPosition.Split(" ").ToList();
+            var roverPosition = request.RoverPosition.Split(" ").ToList();
 
             PlateauModel plateau = new PlateauModel(Convert.ToInt32(plateauCoordinates[0]), Convert.ToInt32(plateauCoordinates[1]));
-            RoverModel rover = new RoverModel(Convert.ToInt32(rover1Position[0]), Convert.ToInt32(rover1Position[1]), rover1Position[2]);
+            RoverModel rover = new RoverModel(Convert.ToInt32(roverPosition[0]), Convert.ToInt32(roverPosition[1]), roverPosition[2]);
 
             return Task.Run(() =>
             {
