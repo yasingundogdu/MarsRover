@@ -25,11 +25,9 @@ namespace MarsRover.CommandHandlers
             PlateauModel plateau = new PlateauModel(Convert.ToInt32(plateauCoordinates[0]), Convert.ToInt32(plateauCoordinates[1]));
             RoverModel rover = new RoverModel(Convert.ToInt32(rover1Position[0]), Convert.ToInt32(rover1Position[1]), rover1Position[2]);
 
-            rover = _roverActionService.Run(plateau, rover, request.RoverOrder);
-
             return Task.Run(() =>
             {
-                return rover.XCoord + " " + rover.YCoord + " " + rover.Direction;
+                return _roverActionService.CalculatePosition(plateau, rover, request.RoverOrder);
             });
         }
     }

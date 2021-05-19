@@ -14,9 +14,9 @@ namespace MarsRover.Tests
             string order = "LMLMLMLMM";
             var roverActionService = new RoverActionService();
 
-            var actual = roverActionService.Run(plateau, rover, order);
-            
-            Assert.Equal("1 3 N", actual.XCoord + " " + actual.YCoord + " " + actual.Direction);
+            var actual = roverActionService.CalculatePosition(plateau, rover, order);
+
+            Assert.Equal("1 3 N", actual);
         }
     }
 }

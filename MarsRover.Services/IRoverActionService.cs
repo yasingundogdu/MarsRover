@@ -11,6 +11,6 @@ namespace MarsRover.Services
         RoverModel TurnRight(RoverModel rover);
         RoverModel Move(PlateauModel plateau, RoverModel rover);
         RoverModel Execute(PlateauModel plateau, RoverModel rover, char command);
-        RoverModel Run(PlateauModel plateau, RoverModel rover, string order);
+        string CalculatePosition(PlateauModel plateau, RoverModel rover, string order);
     }
 }

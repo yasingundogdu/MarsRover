@@ -5,14 +5,13 @@ namespace MarsRover.Services
 {
     public class RoverActionService : IRoverActionService
     {
-        public RoverModel Run(PlateauModel plateau, RoverModel rover, string order)
+        public string CalculatePosition(PlateauModel plateau, RoverModel rover, string order)
         {
-
             for (int i = 0; i < order.Length; i++)
             {
                 rover = Execute(plateau, rover, order[i]);
             }
-            return rover;
+            return $"{rover.XCoord} {rover.YCoord} {rover.Direction}";
         }
 
         public RoverModel Execute(PlateauModel plateau, RoverModel rover, char command)
