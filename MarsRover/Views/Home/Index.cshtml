@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <div class="col-6 offset-3">
+
+        <div class="form-group">
+            <label>Upper-Right Coordinates of the Plateau </label>
+            <input id="plateau-coordinates" type="text" value="5 5" class="form-control">
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label>Rover's Position</label>
+                    <input id="rover-position" type="text" value="1 2 N" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Series of Instruction</label>
+                    <input id="rover-order" type="text" value="LMLMLMLMM" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <button id="btn_calculate" class="btn btn-primary" style="width:100%">Calculate</button>
+
+    </div>
+    <p class="mt-4" style="font-size:24px;"><strong>Output</strong></p>
+    <span id="output">
+    </span>
+</div>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("#btn_calculate").click(function () {
+
+                var CalculateModel = new Object();
+                CalculateModel.PlateauCoordinates = $("#plateau-coordinates").val();
+                CalculateModel.RoverPosition = $("#rover-position").val();
+                CalculateModel.RoverOrder = $("#rover-order").val();
+                
+                AjaxCall("Calculate", JSON.stringify(CalculateModel), "CalculateResult(msg)", "POST");
+            });
+        });
+
+        function CalculateResult(result) {
+            if (result != "null") {
+                var jsonResult = JSON.parse(result);
+                $("#output").html(jsonResult);
+            }
+        }
+        function AjaxCall(metodName, data, returnFunction, submitType) {
+            $.ajax({
+                type: submitType,
+                url: window.location.protocol + '//' + window.location.host + '/' + metodName,
+                async: false,
+                data: data,
+                beforeSend: function (xhr) {
+
+                },
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (msg, xhr) {
+                    eval(returnFunction);
+                },
+                error: function (xhr, msg) {
+
+                }
+            });
+        }
+    </script>
+}
