@@ -31,7 +31,6 @@ namespace MarsRover
             services.AddSingleton<ICalculateFinalPositionCommandValidator, CalculateFinalPositionCommandValidator>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation(); 
             services.AddMediatR(typeof(Startup));
-            //services.AddCommandValidators(new[] { typeof(Startup).Assembly });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

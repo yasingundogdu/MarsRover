@@ -1,10 +1,5 @@
-﻿using FluentValidation;
-using MarsRover.Commands;
-using MarsRover.Models;
+﻿using MarsRover.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MarsRover.CommandValidators
 {

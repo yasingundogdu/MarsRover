@@ -28,13 +28,9 @@ namespace MarsRover.Controllers
             var checkPositions = _calculateFinalPositionCommandValidator.RoverPositionValidator(command.RoverPosition);
 
             if (checkCoordinates.IsValid && checkPositions.IsValid)
-            {
                 ViewData["Output"] = _mediator.Send(command).Result;
-            }
             else
-            {
-                ViewData["Output"] = $"{checkCoordinates.Message} {checkPositions.Message}"; 
-            }
+                ViewData["Output"] = $"{checkCoordinates.Message} {checkPositions.Message}";
 
             return Json(JsonConvert.SerializeObject(ViewData["Output"]));
         }
